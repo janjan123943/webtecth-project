@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking page </title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="output.css" rel="stylesheet">
+    <style>
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.5);
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+        }
+        input[type="date"] {
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: #fff;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.2s ease-in-out;
+        }
+        input[type="date"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+        }
+        .booking-container {
+            width: 90%;
+            max-width: 800px;
+            padding: 2rem;
+            background-color: #FFF2F2;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            font-size: 1.2rem;
+            padding: 1rem;
+        }
+        label {
+            font-size: 1.1rem;
+        }
+        input {
+            transition: all 0.3s ease-in-out;
+        }
+        input:focus {
+            background-color: #e6f7ff;
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+        }
+        button {
+            transition: all 0.3s ease-in-out;
+        }
+        button:hover {
+            transform: scale(1.05);
+            background-color: #0056b3;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .nav-button {
+            background-color: #007bff;
+            color: white;
+            border: 2px solid white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            text-align: center;
+            font-weight: bold;
+            min-width: 120px;
+        }
+
+        .nav-button:hover {
+            background-color: #cbd7e4;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+            position: absolute;
+            right: 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background-color: #007bff;
+                padding: 10px;
+                border-radius: 10px;
+                position: absolute;
+                right: 20px;
+                top: 60px;
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+            nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #007bff;
+            padding: 1rem 5%;
+            z-index: 1000;
+        }
+
+        body {
+            font-size: clamp(14px, 2vw, 18px);
+            padding-top: 80px; /* To prevent content from being hidden behind the navbar */
+        }
+            .logo-container {
+                margin-right: auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .logo-container {
+                margin-left: 20px;
+                margin-right: auto;
+            }
+        }
+        body {
+    font-family: 'Poppins', sans-serif;
+}
+    </style>
+</head>
+
+<body class="bg-white text-white">
+    <nav class="bg-blue-500 p-4 flex flex-col md:flex-row items-center justify-between gap-4 relative">
+        <div class="logo-container flex items-center">
+            <img src="https://th.bing.com/th/id/OIP.IhgWlJj9rzgxwht2bdpgSgHaFV?rs=1&pid=ImgDetMain" 
+            alt="Resort Logo" class="w-16 h-16 rounded-full object-cover">
+            <a href="index.html" class="text-white text-2xl resort-font ml-2">Recidencia Del Hamor</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        <div class="nav-menu">
+            <button class="nav-button" onclick="location.href='index.html'">Home</button>
+            <button class="nav-button" onclick="location.href='accommodations.html'">Accommodations</button>
+            <button class="nav-button" onclick="location.href='amenities.html'">Amenities</button>
+            <button class="nav-button" onclick="location.href='contact.html'">Contact Us</button>
+        </div>
+    </nav>
+
+    <!-- Booking Page -->
+    <div class="container">
+        <div class="booking-container">
+            <section class="p-8">
+                <h2 class="text-3xl font-semibold text-center text-gray-900 mb-6">Book Your Stay</h2>
+                <form id="booking-form" class="space-y-6">
+                    <div>
+                        <label class="block text-gray-700">Full Name</label>
+                        <input type="text" name="name" placeholder="Your Name" required
+                            class="w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700">Email Address</label>
+                        <input type="email" name="email" placeholder="Your Email" required
+                            class="w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700">Check-in</label>
+                            <input type="date" id="checkin" name="checkin" required
+                                class="w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700">Check-out</label>
+                            <input type="date" id="checkout" name="checkout" required
+                                class="w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                        </div>
+                    </div><br>
+
+                    <div class="text-center">
+                        <button type="submit"
+                        class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Confirm Booking
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <script>
+         function toggleMenu() {
+        const menu = document.querySelector('.nav-menu');
+        menu.classList.toggle('active');
+    }
+
+        document.getElementById("booking-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Booking Confirmed!\nThank you for choosing Recidencia Del Hamor!");
+            this.reset();
+        });
+    </script>
+</body> 
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="./output.css" rel="stylesheet">
+  <title>Amenities-activities page</title>
+  <style>
+   .nav-button {
+            background-color: #007bff;
+            color: white;
+            border: 2px solid white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            text-align: center;
+            font-weight: bold;
+            min-width: 120px;
+        }
+
+        .nav-button:hover {
+            background-color: #b0d3f7;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+            position: absolute;
+            right: 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background-color: #007bff;
+                padding: 10px;
+                border-radius: 10px;
+                position: absolute;
+                right: 20px;
+                top: 60px;
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+            nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #007bff;
+            padding: 1rem 5%;
+            z-index: 1000;
+        }
+
+        body {
+            font-size: clamp(14px, 2vw, 18px);
+            padding-top: 80px; /* To prevent content from being hidden behind the navbar */
+        }
+            .logo-container {
+                margin-right: auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .logo-container {
+                margin-left: 20px;
+                margin-right: auto;
+            }
+    }
+     .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      height: 200px;
+      transition: transform 0.3s ease-in-out;
+      font-size: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 3rem;
+    }
+
+    .card:nth-child(1) { background-color: #2697a3; }
+    .card:nth-child(2) { background-color: #dfb537; }
+    .card:nth-child(3) { background-color: #92bd62; }
+    .card:nth-child(4) { background-color: #ffc265; }
+    .card:nth-child(5) { background-color: #754ebe; }
+    .card:nth-child(6) { background-color: #d6346d; }
+    .card:nth-child(7) { background-color: #0e6a94; }
+
+    .icon-img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+    body {
+    font-family: 'Poppins', sans-serif;
+}
+  </style>
+</head>
+<body class="bg-white text-black">
+  <nav class="bg-blue-500 p-4 flex flex-col md:flex-row items-center justify-between gap-4 relative">
+      <div class="logo-container flex items-center">
+          <img src="https://th.bing.com/th/id/OIP.IhgWlJj9rzgxwht2bdpgSgHaFV?rs=1&pid=ImgDetMain" 
+          alt="Resort Logo" class="w-16 h-16 rounded-full object-cover">
+          <a href="index.html" class="text-white text-2xl resort-font ml-2">Recidencia Del Hamor</a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+      <div class="nav-menu">
+          <button class="nav-button" onclick="location.href='index.html'">Home</button>
+          <button class="nav-button" onclick="location.href='accommodations.html'">Accommodations</button>
+          <button class="nav-button" onclick="location.href='amenities.html'">Amenities</button>
+          <button class="nav-button" onclick="location.href='contact.html'">Contact Us</button>
+      </div>
+  </nav>
+  <section id="amenities-activities" class="py-20 bg-gray-100">
+    <div class="container mx-auto">
+      <h2 class="section-title text-black font-semibold">Amenities</h2>
+      <div class="container">
+        <div class="card">
+          <img src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3263596/pool-icon-md.png" alt="Outdoor Swimming Pool" class="icon-img ">
+          <h3>Outdoor Swimming Pool</h3>
+        </div>
+        <div class="card">
+          <img src="https://www.freeiconspng.com/uploads/restaurant-icon-png-plate-1.png" alt="Restaurant" class="icon-img">
+          </h3>Restaurant</h3>
+        </div>
+        <div class="card">
+          <img src="https://icon-library.com/images/friendly-icon/friendly-icon-7.jpg" alt="Spa and Wellness Center" class="icon-img">
+          </h3>Spa and Wellness Center</h3>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1314/1314987.png" alt="Room Service" class="icon-img">
+          </h3>Room Service</h3>
+        </div>
+        <div class="card">
+          <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/reception-1413192-1199287.png" alt="24-Hour Front Desk" class="icon-img">
+          </h3>24-Hour Front Desk</h3>
+        </div>
+        <div class="card">
+          <img src="https://www.freeiconspng.com/uploads/3d-black-wifi-icon-9.png" alt="Free Wi-Fi" class="icon-img">
+          </h3>Free Wi-Fi</h3>
+        </div>
+      </div><br>
+
+      <h2 class="section-title text-black font-semibold mt-2">Activities</h2>
+      <div class="container">
+        <div class="card">
+          <img src="https://images.vexels.com/media/users/3/136870/isolated/preview/40b24c9ac8d7c2d89a7038337ab17ed0-snorkeling-flat-icon-by-vexels.png" alt="Snorkeling" class="icon-img">
+          </h3> Snorkeling</h3>
+        </div>
+        <div class="card">
+          <img src="https://webstockreview.net/images/sunset-clipart-logo-4.png" alt="Sunset Cruise" class="icon-img">
+          <h3>Sunset Cruise</h3>
+        </div>
+        <div class="card">
+          <img src="https://th.bing.com/th/id/R.6e2c19c739e8391d8162d4aad09daa7d?rik=c9i5KgEk2ZwFrA&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fcamping-silhouette%2fcamping-silhouette-14.png&ehk=XyEq%2bmQEcOmu3PvX1X9apBg96yDtGVDX08oQjOgb8dg%3d&risl=&pid=ImgRaw&r=0" alt="Bonfire Night" class="icon-img">
+          </h3>Bonfire Night</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+     function toggleMenu() {
+        const menu = document.querySelector('.nav-menu');
+        menu.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodations page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="./output.css" rel="stylesheet">
+    <style>
+        #details-modal .modal-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+        }
+        /* Navigation buttons style */
+        .nav-button {
+            background-color: #007bff;
+            color: white;
+            border: 2px solid white;
+            padding: 13px 38px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            text-align: center;
+            font-weight: bold;
+            min-width: 150px;
+        }
+
+        .nav-button {
+            background-color: #007bff;
+            color: white;
+            border: 2px solid white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            text-align: center;
+            font-weight: bold;
+            min-width: 120px;
+        }
+
+        .nav-button:hover {
+            background-color: #b0d3f7;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+            position: absolute;
+            right: 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background-color: #007bff;
+                padding: 10px;
+                border-radius: 10px;
+                position: absolute;
+                right: 20px;
+                top: 60px;
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+            nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #007bff;
+            padding: 1rem 5%;
+            z-index: 1000;
+        }
+
+        body {
+            font-size: clamp(14px, 2vw, 18px);
+            padding-top: 80px; /* To prevent content from being hidden behind the navbar */
+        }
+            .logo-container {
+                margin-right: auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .logo-container {
+                margin-left: 20px;
+                margin-right: auto;
+            }
+        }
+        input, textarea {
+            background-color: rgb(224, 223, 223);
+            border: 2px solid #ccc;
+            color: #333;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #888;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        h2 {
+            font-family: inherit;
+            font-weight: bold;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .contact-info a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .contact-info img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .contact-container {
+            box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .contact-container:hover {
+            transform: scale(1.02);
+        }
+        body {
+            font-size: clamp(14px, 2vw, 18px);
+        }
+
+        .logo-text {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        /* View Details button style (same as Send Message button) */
+        .view-details-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-details-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Enlarge room images */
+        .room-image {
+            width: 100%;
+            height: 350px;
+            border-radius: 8px;
+        }
+        body {
+    font-family: 'Poppins', sans-serif;
+}
+    </style>
+    <script>
+        <!-- Your existing content here -->
+
+    let currentSlideIndex = 0;
+    let slideInterval;
+
+    const roomImages = {
+        'Standard Room': [
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600406777.jpg?k=8e822767a508f55083e1590f716ff2d3d637c8c18c4c5e4dbbe8b6c4b93f43cb&o=&s=1024x',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600407513.jpg?k=73771ef4d8fbb0b4f0d62e4d094bb05eea731b3d39addbce6361972d959fff9e&o=&s=1024x',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600406772.jpg?k=10af391a77c662a8b3cd4ea13781bad21497915b5f8c6d50a44a2ece9d592cc6&o=&s=1024x'
+        ],
+        'Junior Suite Room': [
+            'https://cf.bstatic.com/xdata/images/hotel/max1024x768/600407549.jpg?k=599bf4e91ee6c30ca463ad2cddc1d36d67159e419bda799c29b0056d7e5fe376&o=&hp=1',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600407513.jpg?k=73771ef4d8fbb0b4f0d62e4d094bb05eea731b3d39addbce6361972d959fff9e&o=&s=1024x',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600406772.jpg?k=10af391a77c662a8b3cd4ea13781bad21497915b5f8c6d50a44a2ece9d592cc6&o=&s=1024x'
+        ],
+        'Beachfront Villa': [
+            'https://cf.bstatic.com/xdata/images/hotel/max1024x768/600407542.jpg?k=b8dd8c88199e4076192373b8ff3b3d4e569c9745033f66a4b1e837bce08ef45b&o=&hp=1',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600407513.jpg?k=73771ef4d8fbb0b4f0d62e4d094bb05eea731b3d39addbce6361972d959fff9e&o=&s=1024x',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600406772.jpg?k=10af391a77c662a8b3cd4ea13781bad21497915b5f8c6d50a44a2ece9d592cc6&o=&s=1024x'
+        ],
+        'Premier Room': [
+            'https://cf.bstatic.com/xdata/images/hotel/max1024x768/600407550.jpg?k=d573f599a3cbc8b31c5dd5c3ab222e21241964e73503a295fe043485430e4586&o=&hp=1',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600407513.jpg?k=73771ef4d8fbb0b4f0d62e4d094bb05eea731b3d39addbce6361972d959fff9e&o=&s=1024x',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600406772.jpg?k=10af391a77c662a8b3cd4ea13781bad21497915b5f8c6d50a44a2ece9d592cc6&o=&s=1024x'
+        ],
+        'Presidential Suite Room': [
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600407536.jpg?k=50b87c3040be91639292d2587eba3c6f75034adf83036bc93bed7439fdc860b9&o=&s=1024x',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600407513.jpg?k=73771ef4d8fbb0b4f0d62e4d094bb05eea731b3d39addbce6361972d959fff9e&o=&s=1024x',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600406772.jpg?k=10af391a77c662a8b3cd4ea13781bad21497915b5f8c6d50a44a2ece9d592cc6&o=&s=1024x'
+        ],
+        'Junior Room': [
+            'https://cf.bstatic.com/xdata/images/hotel/max1024x768/600407548.jpg?k=085d6cca1a8ff5663a96c8a4f2f14addcb96bc4b076d2fdae0a2b2dcd79e953d&o=&hp=1',
+             'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600407513.jpg?k=73771ef4d8fbb0b4f0d62e4d094bb05eea731b3d39addbce6361972d959fff9e&o=&s=1024x',
+            'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600406772.jpg?k=10af391a77c662a8b3cd4ea13781bad21497915b5f8c6d50a44a2ece9d592cc6&o=&s=1024x'
+        ]
+    };
+
+    function openModal(room, details, price, guests, img) {
+        document.getElementById("modal-title").innerText = room;
+        document.getElementById("modal-details").innerText = details;
+        document.getElementById("modal-price").innerText = "₱" + price + " per night";
+        document.getElementById("modal-guests").innerText = "Accommodates up to " + guests + " guests";
+
+        const images = roomImages[room] || [img];
+        currentSlideIndex = 0;
+        document.getElementById("modal-img").src = images[currentSlideIndex];
+
+        document.getElementById("details-modal").classList.remove("hidden");
+
+        startCarousel(images);
+    }
+
+    function closeModal() {
+        document.getElementById("details-modal").classList.add("hidden");
+        clearInterval(slideInterval);
+    }
+
+    function startCarousel(images) {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(() => {
+            currentSlideIndex = (currentSlideIndex + 1) % images.length;
+            document.getElementById("modal-img").src = images[currentSlideIndex];
+        }, 2000); // Change slide every 3 seconds
+    }
+    function toggleMenu() {
+        const menu = document.querySelector('.nav-menu');
+        menu.classList.toggle('active');
+    }
+  
+</script>
+    
+</script>
+</body>
+
+    </script>
+</head>
+<body class="bg-white text-white">
+    <nav class="bg-blue-500 p-4 flex flex-col md:flex-row items-center justify-between gap-4 relative">
+        <div class="logo-container flex items-center">
+            <img src="https://th.bing.com/th/id/OIP.IhgWlJj9rzgxwht2bdpgSgHaFV?rs=1&pid=ImgDetMain" 
+            alt="Resort Logo" class="w-16 h-16 rounded-full object-cover">
+            <a href="index.html" class="text-white text-2xl resort-font ml-2">Recidencia Del Hamor</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        <div class="nav-menu">
+            <button class="nav-button" onclick="location.href='index.html'">Home</button>
+            <button class="nav-button" onclick="location.href='accommodations.html'">Accommodations</button>
+            <button class="nav-button" onclick="location.href='amenities.html'">Amenities</button>
+            <button class="nav-button" onclick="location.href='contact.html'">Contact Us</button>
+        </div>
+    </nav>
+
+    <!-- Modal -->
+    <button onclick="toggleModal()">Show Modal</button>
+    <div id="details-modal" class="fixed inset-0 bg-white bg-opacity-50 flex justify-center items-center hidden">        <div class="bg-white p-6 rounded-lg shadow-2xl max-w-lg text-gray-900 relative">
+            <div class="mt-4 flex justify-start">
+                <button onclick="closeModal()" class="bg-blue-500 text-white px-8 py-3 text-base font-medium rounded-lg hover:bg-gray-600 transition duration-300 w-fit">
+                    Back
+                </button>
+            </div>
+            <div class="mt-4 flex justify-center">
+                <img id="modal-img" src="" alt="Room Image" class="w-full h-64 object-cover rounded-lg">
+            </div>
+            
+            <h3 id="modal-title" class="text-3xl font-bold mt-4 text-center"></h3>
+            <p id="modal-details" class="text-lg mt-2 text-center"></p>
+            <p id="modal-price" class="text-lg font-bold mt-3 text-center"></p>
+            <p id="modal-guests" class="text-lg text-center mt-3"></p>
+            <a href="booking.html" target="_blank">
+                <button class="bg-blue-600 text-white px-8 py-3 text-base font-medium rounded-lg hover:bg-blue-700 transition duration-300 mx-auto block mt-2">
+                    Book Now
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <section class="py-12 px-6 space-y-2 ">
+        <div class="container mx-auto text-center"><br><br>
+            <h2 class="text-5xl font-semibold text-gray-900 mb-4">Choose Your Stay</h2>
+            <p class="text-2xl text-gray-600 mb-6">Immerse Yourself in Coastal Luxury</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <script>
+                    const accommodations = [
+                        { name: 'Standard Room', price:11500, guests: 2,img: 'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600406777.jpg?k=8e822767a508f55083e1590f716ff2d3d637c8c18c4c5e4dbbe8b6c4b93f43cb&o=&s=1024x' },
+                        { name: 'Junior Suite Room', price: 13000, guests: 2, img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/600407549.jpg?k=599bf4e91ee6c30ca463ad2cddc1d36d67159e419bda799c29b0056d7e5fe376&o=&hp=1' },
+                        { name: 'Beachfront Villa', price: 15000 , guests: 2, img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/600407542.jpg?k=b8dd8c88199e4076192373b8ff3b3d4e569c9745033f66a4b1e837bce08ef45b&o=&hp=1' },
+                        { name: 'Premier Room', price: 17000, guests: 2, img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/600407550.jpg?k=d573f599a3cbc8b31c5dd5c3ab222e21241964e73503a295fe043485430e4586&o=&hp=1' },
+                        { name: 'Presidential Suite Room', price:22000, guests: 2, img: 'https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/600407536.jpg?k=50b87c3040be91639292d2587eba3c6f75034adf83036bc93bed7439fdc860b9&o=&s=1024x' },
+                        { name: 'Junior Room', price: 13000, guests: 2, img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/600407548.jpg?k=085d6cca1a8ff5663a96c8a4f2f14addcb96bc4b076d2fdae0a2b2dcd79e953d&o=&hp=1' },
+                    ];
+                    
+                    accommodations.forEach(accommodation => {
+                        document.write(`
+                            <div class="space-y-2 bg-white rounded-xl shadow-md p-4">
+                                <img src="${accommodation.img}" alt="${accommodation.name}" class="room-image">
+                                <h3 class="text-3xl font-bold text-gray-900 mt-4">${accommodation.name}</h3>
+                                <button onclick="openModal('${accommodation.name}', 'Experience the comfort and luxury of ${accommodation.name}.', ${accommodation.price}, ${accommodation.guests}, '${accommodation.img}')" 
+                                        class="space-y-2 view-details-button mt-2">
+                                    View Details
+                                </button>
+                                <p class="text-sm text-gray-500">Accommodates up to ${accommodation.guests} guests</p>
+                                <p class="text-sm text-gray-500">35 sq m | Beach view | Sleeps 2 | 1 Queen Bed</p>
+                            </div>
+                        `);
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

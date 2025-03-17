@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="./output.css" rel="stylesheet">
+
+    <style>
+        .luxury-font {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 5rem);
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+        .booking-btn {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            font-size: clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .booking-btn:hover {
+            background-color: #5e6164;
+        }
+
+        .nav-button {
+            background-color: #007bff;
+            color: white;
+            border: 2px solid white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            text-align: center;
+            font-weight: bold;
+            min-width: 120px;
+        }
+
+        .nav-button:hover {
+            background-color: #b0d3f7;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+            position: absolute;
+            right: 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background-color: #007bff;
+                padding: 10px;
+                border-radius: 10px;
+                position: absolute;
+                right: 20px;
+                top: 60px;
+                z-index: 1000;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .logo-container {
+                margin-right: auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .logo-container {
+                margin-left: 20px;
+                margin-right: auto;
+            }
+        }
+
+        .slider {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slider.fade {
+            opacity: 1;
+        }
+
+        body {
+            font-size: clamp(14px, 2vw, 18px);
+        }
+
+        .logo-text {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+        }
+        body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+    </style>
+</head>
+<body class="bg-white text-white">
+    <nav class="bg-blue-500 p-4 flex flex-col md:flex-row items-center justify-between gap-4 relative">
+        <div class="logo-container flex items-center">
+            <img src="https://th.bing.com/th/id/OIP.IhgWlJj9rzgxwht2bdpgSgHaFV?rs=1&pid=ImgDetMain" 
+            alt="Resort Logo" class="w-16 h-16 rounded-full object-cover">
+            <a href="index.html" class="text-white text-2xl resort-font ml-2">Recidencia Del Hamor</a>
+
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        <div class="nav-menu">
+            <button class="nav-button" onclick="location.href='index.html'">Home</button>
+            <button class="nav-button" onclick="location.href='accommodations.html'">Accommodations</button>
+            <button class="nav-button" onclick="location.href='amenities.html'">Amenities</button>
+            <button class="nav-button" onclick="location.href='contact.html'">Contact Us</button>
+        </div>
+    </nav>
+
+    <section id="home" class="relative h-screen overflow-hidden">
+        <div class="absolute inset-0">
+            <img class="slider fade" src="https://imgservice.rentbyowner.com/webp/1280x720/AzRT8xsWDLcQL9frPSuXFfBPP68gnzkfmgGPsxCmnowuVp_VK83QtIkP7Bd-6IIMwiROqRjek2XkrfkE6G3uzHpwnUZB0aQY6EHLJdZuzMf5Yq6cAvvqqvm9Twe2x3W81genEziHm-NVlCTx3z51k4nvV3BJYwhcP9e4EJ8YXo0CZXfvkhA=?property_id=BC-12834604&IgnoreDemoImage=true" alt="Slide 1">
+            <img class="slider fade" src="https://pix8.agoda.net/hotelImages/61298177/0/33e8a9300ec11b2edf14554a99a1d6c8.jpg?ce=0&s=1024x" alt="Slide 2">
+            <img class="slider fade" src="https://pix8.agoda.net/hotelImages/61298177/0/9b21c5642e11a5ec4fbd0d5a5bd022d8.jpg?ce=0&s=1024x" alt="Slide 3">
+            <img class="slider fade" src="https://pix8.agoda.net/hotelImages/61298177/0/680548ed9a1b7aaf12ea98bf2e72ba0b.jpg?ce=0&s=1024x" alt="Slide 4">
+            <img class="slider fade" src="https://thegirlwiththemujihat.com/wp-content/uploads/2023/04/329146411_860919898317206_8877698115607159720_n.jpeg" alt="Slide 5">
+
+        </div>
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="container mx-auto text-center text-white relative z-10 flex flex-col items-center justify-center h-full px-4">
+            <h1 class="luxury-font">Where Elegance Meets Paradise.</h1>
+            <p class="mt-4 text-2xl md:text-2xl">Conveys the perfect blend of sophistication and natural beauty, offering guests a luxurious escape in a breathtaking setting.</p>
+            <a href="accommodations.html" class="booking-btn mt-2">Book Now</a>
+        </div>
+    </section>
+
+<script>
+    function toggleMenu() {
+        const menu = document.querySelector('.nav-menu');
+        menu.classList.toggle('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.slider');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('fade', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        showSlide(currentIndex);
+        setInterval(nextSlide, 2000);
+    });
+</script>
+
+</body>
+</html>
